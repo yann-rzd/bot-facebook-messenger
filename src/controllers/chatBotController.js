@@ -51,11 +51,9 @@ function handleMessage(sender_psid, received_message) {
         {
           "content_type":"text",
           "title":"Je vais bien, merci.",
-          "payload":"oui",
         },{
           "content_type":"text",
           "title":"Non, ça ne va pas.",
-          "payload":"non",
         }
       ]
     }
@@ -64,8 +62,18 @@ function handleMessage(sender_psid, received_message) {
       "text": `${received_message.text}`
     }
   } else if (received_message.attachments) {
+    let attachment_url = received_message.attachments[0].payload.url;
     response = {
-      "text": "Je ne sais pas traiter ce type de demande."
+      "attachment": {
+        "type": "template",
+        "payload": {
+          "template_type": "generic",
+          "elements": [{
+            "title": "Je ne sais pas traiter ce type de demande.",
+            "image_url": attachment_url
+          }]
+        }
+      }
     }
   }
   callSendAPI(sender_psid, response);
