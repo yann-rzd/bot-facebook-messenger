@@ -61,21 +61,7 @@ function handleMessage(sender_psid, received_message) {
     response = {
       "text": `${received_message.text}`
     }
-  // } else if (received_message.attachments) {
-  //   let attachment_url = received_message.attachments[0].payload.url;
-  //   response = {
-  //     "attachment": {
-  //       "type": "template",
-  //       "payload": {
-  //         "template_type": "generic",
-  //         "elements": [{
-  //           "title": "Je ne sais pas traiter ce type de demande.",
-  //           "image_url": attachment_url
-  //         }]
-  //       }
-  //     }
-  //   }
-  }
+  } 
   callSendAPI(sender_psid, response);
 }
 
