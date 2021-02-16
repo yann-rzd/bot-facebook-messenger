@@ -47,24 +47,27 @@ function handleMessage(sender_psid, received_message) {
   if (received_message.text === "Comment vas-tu ?") { 
     response = {
       // "text": "Très bien et vous ?"
-      "payload": {
-        "template_type": "generic",
-        "elements": [{
-          "title": "Très bien et vous ????",
-          "subtitle": "Appuyez sur un bouton pour répondre.",
-          "buttons": [
-            {
-              "type": "postback",
-              "title": "Je vais bien, merci.",
-              "payload": "oui",
-            },
-            {
-              "type": "postback",
-              "title": "Non, ça ne va pas.",
-              "payload": "non",
-            }
-          ],
-        }]
+      "attachment": {
+        "type": "template",
+        "payload": {
+          "template_type": "generic",
+          "elements": [{
+            "title": "Is this the right picture?",
+            "subtitle": "Tap a button to answer.",l,
+            "buttons": [
+              {
+                "type": "postback",
+                "title": "Yes!",
+                "payload": "yes",
+              },
+              {
+                "type": "postback",
+                "title": "No!",
+                "payload": "no",
+              }
+            ],
+          }]
+        }
       }
     }
   } else if (received_message.attachments) {
