@@ -50,12 +50,10 @@ function handleMessage(sender_psid, received_message) {
       "quick_replies":[
         {
           "content_type":"text",
-          "title":"Je vais bien, merci.",
-          "payload":"oui",
+          "title":"Je vais bien, merci."
         },{
           "content_type":"text",
-          "title":"Non, ça ne va pas.",
-          "payload":"non",
+          "title":"Non, ça ne va pas."
         }
       ]
     }
