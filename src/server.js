@@ -8,14 +8,11 @@ import bodyParser from 'body-parser';
 
 const app = express();
 
-// config view engine
 viewEngine(app);
 
-// use body-parser to post data
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended : true }));
 
-// init all web routes
 initWebRoutes(app);
 
 const port = process.env.PORT || 5000;

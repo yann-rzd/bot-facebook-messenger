@@ -46,20 +46,18 @@ function handleMessage(sender_psid, received_message) {
 
   if (received_message.text === "Comment vas-tu ?") { 
     response = {
-      "message":{
-        "text": "Très bien et vous ?",
-        "quick_replies":[
-          {
-            "content_type":"text",
-            "title":"Je vais bien, merci.",
-            "payload":"oui",
-          },{
-            "content_type":"text",
-            "title":"Non, ça ne va pas.",
-            "payload":"non",
-          }
-        ]
-      }
+      "text": "Très bien et vous ?",
+      "quick_replies":[
+        {
+          "content_type":"text",
+          "title":"Je vais bien, merci.",
+          "payload":"oui",
+        },{
+          "content_type":"text",
+          "title":"Non, ça ne va pas.",
+          "payload":"non",
+        }
+      ]
     }
   } else if (received_message.attachments) {
     let attachment_url = received_message.attachments[0].payload.url;
