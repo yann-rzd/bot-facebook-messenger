@@ -56,7 +56,7 @@ function handleMessage(sender_psid, received_message) {
         "payload": {
           "template_type": "generic",
           "elements": [{
-            "title": "Très bien et vous ?",
+            "title": "Très bien et vous ????",
             "subtitle": "Appuyez sur un bouton pour répondre.",
             "buttons": [
               {
