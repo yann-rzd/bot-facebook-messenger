@@ -41,44 +41,45 @@ const getWebhook = (req, res) => {
   }
 };
 
-// function handleMessage(sender_psid, received_message) {
-//   let response;
+function handleMessage(sender_psid, received_message) {
+  let response;
 
-//   if (received_message.text) {    
-//     response = {
-//       "text": `You sent the message: "${received_message.text}". Now send me an image!`
-//     }
-//   } else if (received_message.attachments) {
-//     let attachment_url = received_message.attachments[0].payload.url;
-//       response = {
-//         "attachment": {
-//           "type": "template",
-//           "payload": {
-//             "template_type": "generic",
-//             "elements": [{
-//               "title": "Is this the right picture?",
-//               "subtitle": "Tap a button to answer.",
-//               "image_url": attachment_url,
-//               "buttons": [
-//                 {
-//                   "type": "postback",
-//                   "title": "Yes!",
-//                   "payload": "yes",
-//                 },
-//                 {
-//                   "type": "postback",
-//                   "title": "No!",
-//                   "payload": "no",
-//                 }
-//               ],
-//             }]
-//           }
-//         }
-//       }
+  if (received_message.text.yo) { 
+    console.log('MSG: ', received_message.text);   
+    response = {
+      "text": `You sent the message: "${received_message.text}". Now send me WESH!`
+    }
+  } else if (received_message.attachments) {
+    let attachment_url = received_message.attachments[0].payload.url;
+      response = {
+        "attachment": {
+          "type": "template",
+          "payload": {
+            "template_type": "generic",
+            "elements": [{
+              "title": "Is this the right picture?",
+              "subtitle": "Tap a button to answer.",
+              "image_url": attachment_url,
+              "buttons": [
+                {
+                  "type": "postback",
+                  "title": "Yes!",
+                  "payload": "yes",
+                },
+                {
+                  "type": "postback",
+                  "title": "No!",
+                  "payload": "no",
+                }
+              ],
+            }]
+          }
+        }
+      }
   
-//   }
-//   callSendAPI(sender_psid, response);
-// }
+  }
+  callSendAPI(sender_psid, response);
+}
 
 function handlePostback(sender_psid, received_postback) {
   let response;
@@ -97,7 +98,7 @@ function callSendAPI(sender_psid, response) {
     "recipient": {
       "id": sender_psid
     },
-    "message": {"text": response}
+    "message": response
   }
   request({
     "uri": "https://graph.facebook.com/v6.0/me/messages",
@@ -113,19 +114,19 @@ function callSendAPI(sender_psid, response) {
   });
 }
 
-function firstTrait(nlp, name) {
-  return nlp && nlp.entities && nlp.traits[name] && nlp.traits[name][0];
-}
+// function firstTrait(nlp, name) {
+//   return nlp && nlp.entities && nlp.traits[name] && nlp.traits[name][0];
+// }
 
-function handleMessage(sender_psid, message) {
-  // check greeting is here and is confident
-  const greeting = firstTrait(message.nlp, 'wit$greetings');
-  if (greeting && greeting.confidence > 0.8) {
-    callSendAPI(sender_psid, 'Hi there!');
-  } else { 
-    callSendAPI(sender_psid, 'Default')
-  }
-}
+// function handleMessage(sender_psid, message) {
+//   // check greeting is here and is confident
+//   const greeting = firstTrait(message.nlp, 'wit$greetings');
+//   if (greeting && greeting.confidence > 0.8) {
+//     callSendAPI(sender_psid, 'Hi there!');
+//   } else { 
+//     callSendAPI(sender_psid, 'Default')
+//   }
+// }
 
 module.exports = {
   postWebhook: postWebhook,
