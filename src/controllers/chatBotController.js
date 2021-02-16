@@ -48,6 +48,22 @@ function handleMessage(sender_psid, received_message) {
     response = {
       "text": "Très bien et vous ?"
     }
+  } else if (received_message.text === "Comment vas-tu ?") { 
+    response = {
+      "text": "Très bien et vous ?",
+      "buttons": [
+        {
+          "type": "postback",
+          "title": "Yes!",
+          "payload": "yes",
+        },
+        {
+          "type": "postback",
+          "title": "No!",
+          "payload": "no",
+        }
+      ]
+    }
   } else if (received_message.attachments) {
     let attachment_url = received_message.attachments[0].payload.url;
     response = {
