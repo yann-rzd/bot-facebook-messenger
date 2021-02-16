@@ -59,32 +59,13 @@ function handleMessage(sender_psid, received_message) {
         }
       ]
     }
-  } else if (received_message.attachments) {
-    let attachment_url = received_message.attachments[0].payload.url;
+  } else if (received_message.text !== "Comment vas-tu ?") {
     response = {
-      "attachment": {
-        "type": "template",
-        "payload": {
-          "template_type": "generic",
-          "elements": [{
-            "title": "Is this the right picture?",
-            "subtitle": "Tap a button to answer.",
-            "image_url": attachment_url,
-            "buttons": [
-              {
-                "type": "postback",
-                "title": "Yes!",
-                "payload": "yes",
-              },
-              {
-                "type": "postback",
-                "title": "No!",
-                "payload": "no",
-              }
-            ],
-          }]
-        }
-      }
+      "text": `${received_message.text}`
+    }
+  } else if (received_message.attachments) {
+    response = {
+      "text": "Je ne sais pas traiter ce type de demande."
     }
   }
   callSendAPI(sender_psid, response);
