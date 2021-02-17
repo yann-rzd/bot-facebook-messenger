@@ -46,14 +46,26 @@ function handleMessage(sender_psid, received_message) {
 
   if (received_message.text === "Comment vas-tu ?") { 
     response = {
-      "text": "Très bien et vous ?"
+      "text": "Très bien et vous ?",
+      "quick_replies":[
+        {
+          "content_type":"text",
+          "title":"Red",
+          "payload":"<POSTBACK_PAYLOAD>",
+          "image_url":"http://example.com/img/red.png"
+        },{
+          "content_type":"text",
+          "title":"Green",
+          "payload":"<POSTBACK_PAYLOAD>",
+          "image_url":"http://example.com/img/green.png"
+        }
+      ]
     }
   } else if (received_message.text !== "Comment vas-tu ?") {
     response = {
       "text": `${received_message.text}`
     }
   }
-  
   callSendAPI(sender_psid, response); 
 }
 
