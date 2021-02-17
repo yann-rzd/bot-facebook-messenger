@@ -42,7 +42,7 @@ const getWebhook = (req, res) => {
 };
 
 function handleMessage(sender_psid, received_message) {
-  let response;
+  let responseFineAndYou;
 
   if (received_message.text === "Comment vas-tu ?") {
     responseFineAndYou = {
