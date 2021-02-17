@@ -59,6 +59,10 @@ function handleMessage(sender_psid, received_message) {
         }
       ],
     }
+  } else if (received_message.text === "Je vais bien, merci.") {
+    return
+  } else if (received_message.text === "Non, ça ne va pas.") {
+    return
   } else if (received_message.text !== "Comment vas-tu ?") {
     response = {
       "text": `${received_message.text}`
