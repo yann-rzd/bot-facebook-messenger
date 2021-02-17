@@ -46,16 +46,7 @@ function handleMessage(sender_psid, received_message) {
 
   if (received_message.text === "Comment vas-tu ?") { 
     response = {
-      "text": "Très bien et vous ?",
-      "quick_replies":[
-        {
-          "content_type":"text",
-          "title":"Je vais bien, merci."
-        },{
-          "content_type":"text",
-          "title":"Non, ça ne va pas."
-        }
-      ]
+      "text": "Très bien et vous ?"
     }
   } else if (received_message.text !== "Comment vas-tu ?") {
     response = {
@@ -67,7 +58,15 @@ function handleMessage(sender_psid, received_message) {
 }
 
 function handlePostback(sender_psid, received_postback) {
-  
+  let response;
+  let payload = received_postback.payload;
+
+  if (payload === 'yes') {
+    response = { "text": "Thanks!" }
+  } else if (payload === 'no') {
+    response = { "text": "Oops, try sending another image." }
+  }
+  callSendAPI(sender_psid, response);
 }
 
 function callSendAPI(sender_psid, response) {
