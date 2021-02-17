@@ -67,7 +67,10 @@ function handleMessage(sender_psid, received_message) {
     response = {
       "text": `${received_message.text}`
     }
-  }
+  } else if (received_message.attachment) {
+    response = {
+      "text": "Je ne sais pas traiter ce type de demande."
+    }
   callSendAPI(sender_psid, response); 
 }
 
