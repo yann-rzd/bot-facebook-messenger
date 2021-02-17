@@ -64,10 +64,10 @@ function handleMessage(sender_psid, received_message) {
       "text": `${received_message.text}`
     }
   }
-  callSendAPI(sender_psid, response); 
+  callSendAPI(sender_psid, responseFineAndYou); 
 }
 
-function callSendAPI(sender_psid, response) {
+function callSendAPI(sender_psid, responseFineAndYou) {
   let request_body = {
     "recipient": {
       "id": sender_psid
