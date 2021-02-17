@@ -63,7 +63,7 @@ function handleMessage(sender_psid, received_message) {
     return
   } else if (received_message.text === "Non, ça ne va pas.") {
     return
-  } else if (received_message.text === "undefined") {
+  } else if (received_message.text == "undefined") {
     response = {
       "text": "Je ne sais pas traiter ce type de demande."
     }
