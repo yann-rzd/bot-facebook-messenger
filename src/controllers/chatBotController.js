@@ -67,7 +67,7 @@ function handleMessage(sender_psid, received_message) {
     response = {
       "text": `${received_message.text}`
     }
-  } else if (!webhook_event.message) {
+  } else if (event.message.attachments) {
     response = {
       "text": "Je ne sais pas traiter ce type de demande."
     }
