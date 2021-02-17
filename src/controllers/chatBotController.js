@@ -12,12 +12,10 @@ const postWebhook = (req, res) => {
       let sender_psid = webhook_event.sender.id;
       console.log('Sender PSID: ' + sender_psid);
 
-      if (webhook_event.message.text === "Comment vas-tu ?") {
-        return handleMessageGreeting(sender_psid, webhook_event.message);        
-      } else if (webhook_event.message.text !== "Comment vas-tu ?") {
-        return handleMessageDefault(sender_psid, webhook_event.message);        
+      if (webhook_event.message) {
+        handleMessage(sender_psid, webhook_event.message);        
       } else if (webhook_event.postback) {
-         return handlePostback(sender_psid, webhook_event.postback);
+        handlePostback(sender_psid, webhook_event.postback);
       }
     });
     res.status(200).send('EVENT_RECEIVED');
@@ -43,9 +41,10 @@ const getWebhook = (req, res) => {
   }
 };
 
-function handleMessageGreeting(sender_psid, received_message) {
+function handleMessage(sender_psid, received_message) {
   let response;
 
+  if (received_message.text === "Comment vas-tu ?") {
     response = {
       "text": "Très bien et vous ?",
       "quick_replies":[
@@ -60,40 +59,15 @@ function handleMessageGreeting(sender_psid, received_message) {
         }
       ],
     }
-  callSendAPIGreeting(sender_psid, response); 
-}
-
-function handleMessageDefault(sender_psid, received_message) {
-  let response;
-
+  } else if (received_message.text !== "Comment vas-tu ?") {
     response = {
       "text": `${received_message.text}`
     }
-  callSendAPIDefault(sender_psid, response); 
-}
-
-function callSendAPIGreeting(sender_psid, response) {
-  let request_body = {
-    "recipient": {
-      "id": sender_psid
-    },
-    "message": response
   }
-  request({
-    "uri": "https://graph.facebook.com/v6.0/me/messages",
-    "qs": { "access_token": process.env.FB_PAGE_TOKEN },
-    "method": "POST",
-    "json": request_body
-  }, (err, res, body) => {
-    if (!err) {
-      console.log('message sent!');
-    } else {
-      console.error("Unable to send message:" + err);
-    }
-  });
+  callSendAPI(sender_psid, response); 
 }
 
-function callSendAPIDefault(sender_psid, response) {
+function callSendAPI(sender_psid, response) {
   let request_body = {
     "recipient": {
       "id": sender_psid
