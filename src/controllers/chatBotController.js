@@ -51,11 +51,11 @@ function handleMessage(sender_psid, received_message) {
         {
           "content_type":"text",
           "title":"Je vais bien, merci.",
-          "payload":"oui",
+          "payload":"oui"
         },{
           "content_type":"text",
           "title":"Non, ça ne va pas.",
-          "payload":"non",
+          "payload":"non"
         }
       ]
     }
@@ -84,7 +84,7 @@ function callSendAPI(sender_psid, response) {
     "recipient": {
       "id": sender_psid
     },
-    "message": response
+    "message": {"text": response}
   }
   request({
     "uri": "https://graph.facebook.com/v6.0/me/messages",
