@@ -46,7 +46,6 @@ const getWebhook = (req, res) => {
 function handleMessageGreeting(sender_psid, received_message) {
   let response;
 
-  if (received_message.text === "Comment vas-tu ?") {
     response = {
       "text": "Très bien et vous ?",
       "quick_replies":[
@@ -61,18 +60,15 @@ function handleMessageGreeting(sender_psid, received_message) {
         }
       ],
     }
-  }
   callSendAPIGreeting(sender_psid, response); 
 }
 
 function handleMessageDefault(sender_psid, received_message) {
   let response;
 
-  if (received_message.text) {
     response = {
       "text": `${received_message.text}`
     }
-  }
   callSendAPIDefault(sender_psid, response); 
 }
 
