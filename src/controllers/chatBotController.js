@@ -45,7 +45,7 @@ function handleMessage(sender_psid, received_message) {
   let response;
 
   if (received_message.text === "Comment vas-tu ?") {
-    response = {
+    responseFineAndYou = {
       "text": "Très bien et vous ?",
       "quick_replies":[
         {
@@ -72,7 +72,7 @@ function callSendAPI(sender_psid, response) {
     "recipient": {
       "id": sender_psid
     },
-    "message": response
+    "message": responseFineAndYou
   }
   request({
     "uri": "https://graph.facebook.com/v6.0/me/messages",
