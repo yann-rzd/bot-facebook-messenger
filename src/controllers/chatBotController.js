@@ -13,11 +13,11 @@ const postWebhook = (req, res) => {
       console.log('Sender PSID: ' + sender_psid);
 
       if (webhook_event.message.text === "Comment vas-tu ?") {
-        handleMessageGreeting(sender_psid, webhook_event.message);        
+        return handleMessageGreeting(sender_psid, webhook_event.message);        
       } else if (webhook_event.message.text !== "Comment vas-tu ?") {
-        handleMessageDefault(sender_psid, webhook_event.message);        
+        return handleMessageDefault(sender_psid, webhook_event.message);        
       } else if (webhook_event.postback) {
-        handlePostback(sender_psid, webhook_event.postback);
+         return handlePostback(sender_psid, webhook_event.postback);
       }
     });
     res.status(200).send('EVENT_RECEIVED');
