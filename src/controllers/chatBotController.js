@@ -67,7 +67,7 @@ function handleMessage(sender_psid, received_message) {
     response = {
       "text": `${received_message.text}`
     }
-  } else if (received_message.text === "undefined") {
+  } else if (entry.messaging[0] === "undefined") {
     response = {
       "text": "Je ne sais pas traiter ce type de demande."
     }
