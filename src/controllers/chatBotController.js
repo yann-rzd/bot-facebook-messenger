@@ -58,7 +58,6 @@ function handleMessage(sender_psid, received_message) {
           "payload":"non"
         }
       ],
-      "text": ""
     }
   } else if (received_message.text !== "Comment vas-tu ?") {
     response = {
