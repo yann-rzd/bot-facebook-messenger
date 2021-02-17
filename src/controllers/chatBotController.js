@@ -71,6 +71,7 @@ function handleMessage(sender_psid, received_message) {
     response = {
       "text": "Je ne sais pas traiter ce type de demande."
     }
+  }
   callSendAPI(sender_psid, response); 
 }
 
