@@ -47,15 +47,16 @@ function handleMessage(sender_psid, received_message) {
   if (received_message.text === "Comment vas-tu ?") { 
     response = {
       "text": "Très bien et vous ?",
-      "quick_replies":[
+      "buttons": [
         {
-          "content_type":"text",
-          "title":"Je vais bien, merci.",
-          "payload":"oui"
-        },{
-          "content_type":"text",
-          "title":"Non, ça ne va pas.",
-          "payload":"non"
+          "type": "postback",
+          "title": "Yes!",
+          "payload": "yes",
+        },
+        {
+          "type": "postback",
+          "title": "No!",
+          "payload": "no",
         }
       ]
     }
