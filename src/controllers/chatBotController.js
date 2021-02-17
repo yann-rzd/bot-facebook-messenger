@@ -44,25 +44,29 @@ const getWebhook = (req, res) => {
 function handleMessage(sender_psid, received_message) {
   let response;
 
-  if (received_message.text === "Comment vas-tu ?") { 
-    response = {
-      "text": "Très bien et vous ?",
-      "quick_replies":[
-        {
-          "content_type":"text",
-          "title":"Je vais bien, merci.",
-          "payload":"oui"
-        },{
-          "content_type":"text",
-          "title":"Non, ça ne va pas.",
-          "payload":"non"
-        }
-      ],
-    }
+  if (received_message.text === "Comment vas-tu ?") {
+    return (
+      response = {
+        "text": "Très bien et vous ?",
+        "quick_replies":[
+          {
+            "content_type":"text",
+            "title":"Je vais bien, merci.",
+            "payload":"oui"
+          },{
+            "content_type":"text",
+            "title":"Non, ça ne va pas.",
+            "payload":"non"
+          }
+        ],
+      }
+    );
   } else if (received_message.text !== "Comment vas-tu ?") {
-    response = {
-      "text": `${received_message.text}`
-    }
+    return (
+      response = {
+        "text": `${received_message.text}`
+      }
+    )
   }
   callSendAPI(sender_psid, response); 
 }
