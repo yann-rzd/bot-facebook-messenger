@@ -44,16 +44,25 @@ const getWebhook = (req, res) => {
 function handleMessage(sender_psid, received_message) {
   let response;
 
-  // Check if the message contains text
-  if (received_message.text) {    
-
-    // Create the payload for a basic text message
+  if (received_message.text === "Comment vas-tu ?") { 
     response = {
-      "text": `You sent the message: "${received_message.text}". Now send me an image!`
+      "text": "Très bien et vous ?",
+      "quick_replies":[
+        {
+          "content_type":"text",
+          "title":"Je vais bien, merci."
+        },{
+          "content_type":"text",
+          "title":"Non, ça ne va pas."
+        }
+      ]
     }
-  }  
+  } else if (received_message.text !== "Comment vas-tu ?") {
+    response = {
+      "text": `${received_message.text}`
+    }
+  }
   
-  // Sends the response message
   callSendAPI(sender_psid, response); 
 }
 
