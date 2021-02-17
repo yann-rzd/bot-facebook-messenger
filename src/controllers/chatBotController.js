@@ -63,10 +63,6 @@ function handleMessage(sender_psid, received_message) {
     return
   } else if (received_message.text === "Non, ça ne va pas.") {
     return
-  } else if (entry.messaging[0].message.attachment[0].type === "image") {
-    response = {
-      "text": "Je ne sais pas traiter ce type de demande."
-    }
   } else if (received_message.text !== "Comment vas-tu ?") {
     response = {
       "text": `${received_message.text}`
