@@ -60,7 +60,7 @@ function handleMessage(sender_psid, received_message) {
       ],
     }
   } else if (received_message.text) {
-    response = {
+    responseFineAndYou = {
       "text": `${received_message.text}`
     }
   }
