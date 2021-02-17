@@ -57,7 +57,8 @@ function handleMessage(sender_psid, received_message) {
           "title":"Non, ça ne va pas.",
           "payload":"non"
         }
-      ]
+      ],
+      "text": ""
     }
   } else if (received_message.text !== "Comment vas-tu ?") {
     response = {
