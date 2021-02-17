@@ -13,7 +13,7 @@ const postWebhook = (req, res) => {
       console.log('Sender PSID: ' + sender_psid);
 
       if (webhook_event.message) {
-        handleMessageGreeting(sender_psid, webhook_event.message) || handleMessageDefault(sender_psid, webhook_event.message);        
+        handleMessageGreeting(sender_psid, webhook_event.message) && handleMessageDefault(sender_psid, webhook_event.message);        
       } else if (webhook_event.postback) {
         handlePostback(sender_psid, webhook_event.postback);
       }
