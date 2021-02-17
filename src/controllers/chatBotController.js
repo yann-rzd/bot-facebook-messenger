@@ -67,6 +67,18 @@ function handleMessage(sender_psid, received_message) {
   callSendAPI(sender_psid, response); 
 }
 
+function handlePostback(sender_psid, received_postback) {
+  let response;
+  let payload = received_postback.payload;
+
+  if (payload === 'oui') {
+    response = { "text": "" }
+  } else if (payload === 'non') {
+    response = { "text": "" }
+  }
+  callSendAPI(sender_psid, response);
+}
+
 function callSendAPI(sender_psid, response) {
   let request_body = {
     "recipient": {
