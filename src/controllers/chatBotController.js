@@ -13,7 +13,9 @@ const postWebhook = (req, res) => {
       console.log('Sender PSID: ' + sender_psid);
 
       if (webhook_event.message) {
-        handleMessage(sender_psid, webhook_event.message);        
+        handleMessageGreeting(sender_psid, webhook_event.message);        
+      } else if (webhook_event.message) {
+        handleMessageDefault(sender_psid, webhook_event.message);        
       } else if (webhook_event.postback) {
         handlePostback(sender_psid, webhook_event.postback);
       }
@@ -41,7 +43,7 @@ const getWebhook = (req, res) => {
   }
 };
 
-function handleMessage(sender_psid, received_message) {
+function handleMessageGreeting(sender_psid, received_message) {
   let response;
 
   if (received_message.text === "Comment vas-tu ?") {
@@ -59,15 +61,43 @@ function handleMessage(sender_psid, received_message) {
         }
       ],
     }
-  } else if (received_message.text) {
+  }
+  callSendAPIGreeting(sender_psid, response); 
+}
+
+function handleMessageDefault(sender_psid, received_message) {
+  let response;
+
+  if (received_message.text) {
     response = {
       "text": `${received_message.text}`
     }
   }
-  callSendAPI(sender_psid, response); 
+  callSendAPIDefault(sender_psid, response); 
 }
 
-function callSendAPI(sender_psid, response) {
+function callSendAPIGreeting(sender_psid, response) {
+  let request_body = {
+    "recipient": {
+      "id": sender_psid
+    },
+    "message": response
+  }
+  request({
+    "uri": "https://graph.facebook.com/v6.0/me/messages",
+    "qs": { "access_token": process.env.FB_PAGE_TOKEN },
+    "method": "POST",
+    "json": request_body
+  }, (err, res, body) => {
+    if (!err) {
+      console.log('message sent!');
+    } else {
+      console.error("Unable to send message:" + err);
+    }
+  });
+}
+
+function callSendAPIDefault(sender_psid, response) {
   let request_body = {
     "recipient": {
       "id": sender_psid
