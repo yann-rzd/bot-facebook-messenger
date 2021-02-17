@@ -84,7 +84,7 @@ function callSendAPI(sender_psid, response) {
     "recipient": {
       "id": sender_psid
     },
-    "message": {"text": response}
+    "message": response
   }
   request({
     "uri": "https://graph.facebook.com/v6.0/me/messages",
