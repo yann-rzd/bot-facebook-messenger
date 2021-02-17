@@ -45,7 +45,7 @@ function handleMessage(sender_psid, received_message) {
   let response;
 
   if (received_message.text === "Comment vas-tu ?") {
-    return response = {
+    response = {
       "text": "Très bien et vous ?",
       "quick_replies":[
         {
@@ -60,7 +60,7 @@ function handleMessage(sender_psid, received_message) {
       ],
     }
   } else if (received_message.text !== "Comment vas-tu ?") {
-    return response = {
+    response = {
       "text": `${received_message.text}`
     }
   }
