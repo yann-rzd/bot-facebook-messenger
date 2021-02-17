@@ -42,11 +42,10 @@ const getWebhook = (req, res) => {
 };
 
 function handleMessage(sender_psid, received_message) {
-  let responseFineAndYou;
-  let responseDefault;
+  let response;
 
   if (received_message.text === "Comment vas-tu ?") {
-    responseFineAndYou = {
+    response = {
       "text": "Très bien et vous ?",
       "quick_replies":[
         {
@@ -61,19 +60,19 @@ function handleMessage(sender_psid, received_message) {
       ],
     }
   } else if (received_message.text) {
-    responseDefault = {
+    response = {
       "text": `${received_message.text}`
     }
   }
-  callSendAPI(sender_psid, responseFineAndYou, responseDefault); 
+  callSendAPI(sender_psid, response); 
 }
 
-function callSendAPI(sender_psid, responseFineAndYou, responseDefault) {
+function callSendAPI(sender_psid, response) {
   let request_body = {
     "recipient": {
       "id": sender_psid
     },
-    "message": [responseFineAndYou, responseDefault]
+    "message": response
   }
   request({
     "uri": "https://graph.facebook.com/v6.0/me/messages",
