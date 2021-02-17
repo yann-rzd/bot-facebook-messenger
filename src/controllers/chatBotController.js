@@ -44,12 +44,8 @@ const getWebhook = (req, res) => {
 function handleMessage(sender_psid, received_message) {
   let response;
 
-  if (received_message.text !== "Comment vas-tu ?") {
-    response = {
-      "text": `${received_message.text}`
-    }
-  } else if (received_message.text === "Comment vas-tu ?") {
-    response = {
+  if (received_message.text === "Comment vas-tu ?") {
+    return response = {
       "text": "Très bien et vous ?",
       "quick_replies":[
         {
@@ -62,6 +58,10 @@ function handleMessage(sender_psid, received_message) {
           "payload":"non"
         }
       ],
+    }
+  } else if (received_message.text !== "Comment vas-tu ?") {
+    return response = {
+      "text": `${received_message.text}`
     }
   }
   callSendAPI(sender_psid, response); 
