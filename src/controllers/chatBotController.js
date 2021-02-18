@@ -66,7 +66,11 @@ function handleMessage(sender_psid, received_message) {
   } else if (received_message.text !== "Comment vas-tu ?") {
     response = {
       "text": `${received_message.text}`
-    }
+    } 
+  } else {
+    response = {
+      "text": "Je ne sais pas traiter ce type de demande."
+    } 
   }
   callSendAPI(sender_psid, response); 
 }
