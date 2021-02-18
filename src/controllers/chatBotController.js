@@ -59,7 +59,7 @@ function handleMessage(sender_psid, received_message) {
         }
       ],
     }
-  } else if (message.attachment) {
+  } else if (message.attachments) {
     response = {
       "text": "Je ne sais pas traiter ce type de demande."
     } 
