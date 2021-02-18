@@ -59,6 +59,10 @@ function handleMessage(sender_psid, received_message) {
         }
       ],
     }
+  } else if (received_message.text === "undefined") {
+    response = {
+      "text": "Je ne sais pas traiter ce type de demande."
+    } 
   } else if (received_message.text === "Je vais bien, merci.") {
     return
   } else if (received_message.text === "Non, ça ne va pas.") {
@@ -66,10 +70,6 @@ function handleMessage(sender_psid, received_message) {
   } else if (received_message.text !== "Comment vas-tu ?") {
     response = {
       "text": `${received_message.text}`
-    } 
-  } else {
-    response = {
-      "text": "Je ne sais pas traiter ce type de demande."
     } 
   }
   callSendAPI(sender_psid, response); 
